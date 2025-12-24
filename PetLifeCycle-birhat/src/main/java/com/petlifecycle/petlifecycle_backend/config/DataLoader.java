@@ -1,33 +1,41 @@
 package com.petlifecycle.petlifecycle_backend.config;
 
-import com.petlifecycle.petlifecycle_backend.model.Pet;
-import com.petlifecycle.petlifecycle_backend.model.PetStatus;
-import com.petlifecycle.petlifecycle_backend.model.PetType;
-import com.petlifecycle.petlifecycle_backend.repository.PetRepository;
+import com.petlifecycle.petlifecycle_backend.model.*;
+import com.petlifecycle.petlifecycle_backend.repository.*;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-
-import java.time.LocalDate;
 
 @Configuration
 public class DataLoader {
 
     @Bean
-    CommandLineRunner initDatabase(PetRepository repository) {
+    CommandLineRunner initDatabase(PetRepository petRepository, UserRepository userRepository) {
         return args -> {
-            if (repository.count() == 0) { // Sadece boşsa ekle
-                // 1. Kedi (Resimli)
+            // 1. Önce Kullanıcı Ekle (Eğer yoksa)
+            if (userRepository.count() == 0) {
+                User user = new User();
+                // Modelindeki alan adlarına göre ayarla (username/ad/email olabilir)
+                user.setAd("Mert"); 
+                user.setRol(Role.USER);
+                
+                userRepository.save(user);
+                System.out.println("✅ Kullanıcı Eklendi: Mert (ID: 1)");
+            }
+
+            // 2. Hayvanları Ekle
+            if (petRepository.count() == 0) {
+                // Kedi
                 Pet kedi = new Pet();
-                kedi.setIsim("Pamuk"); // Modeldeki alan adlarına dikkat et (isim/name?)
+                kedi.setIsim("Pamuk");
                 kedi.setTur(PetType.KEDI);
                 kedi.setYas(2);
                 kedi.setKilo(4.5);
                 kedi.setDurum(PetStatus.AVAILABLE);
-                kedi.setResimUrl("images/gallery-1.jpg"); // Template resim yolu
-                repository.save(kedi);
+                kedi.setResimUrl("images/gallery-1.jpg");
+                petRepository.save(kedi);
 
-                // 2. Köpek
+                // Köpek
                 Pet kopek = new Pet();
                 kopek.setIsim("Karabaş");
                 kopek.setTur(PetType.KOPEK);
@@ -35,19 +43,19 @@ public class DataLoader {
                 kopek.setKilo(12.0);
                 kopek.setDurum(PetStatus.AVAILABLE);
                 kopek.setResimUrl("images/gallery-2.jpg");
-                repository.save(kopek);
+                petRepository.save(kopek);
 
-                // 3. EGZOTİK (Şov kısmı burası)
+                // EGZOTİK (Yılan)
                 Pet yilan = new Pet();
                 yilan.setIsim("Slytherin");
-                yilan.setTur(PetType.EXOTIC); // <--- KRİTİK NOKTA
+                yilan.setTur(PetType.EXOTIC);
                 yilan.setYas(1);
                 yilan.setKilo(0.5);
                 yilan.setDurum(PetStatus.AVAILABLE);
                 yilan.setResimUrl("images/gallery-3.jpg");
-                repository.save(yilan);
+                petRepository.save(yilan);
                 
-                System.out.println("--- DEMO VERİLERİ YÜKLENDİ ---");
+                System.out.println("✅ Hayvanlar Eklendi: Pamuk, Karabaş, Slytherin");
             }
         };
     }

@@ -1,30 +1,55 @@
 package com.petlifecycle.petlifecycle_backend.controller;
 
-import java.util.HashMap;
-import java.util.List;
+import com.petlifecycle.petlifecycle_backend.model.*;
+import com.petlifecycle.petlifecycle_backend.repository.*;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.Map;
 
 @RestController
-@RequestMapping("/api/adopt")
+@RequestMapping("/api/adoption") // <-- Frontend buraya istek atıyor, burası DOĞRU
+@CrossOrigin(origins = "*")      // <-- Kapıyı açtık
 public class AdoptionController {
 
-    // Mert bir butona bastığında buraya POST isteği atacak
-    @PostMapping("/{petId}")
-    public String applyForAdoption(@PathVariable Long petId, @RequestBody Map<String, Object> applicationDetails) {
-        // Şimdilik sadece başvurunun alındığını Mert'e bildirelim
-        System.out.println("Pet ID: " + petId + " için başvuru geldi.");
-        return "Basvuru basariyla alindi! Pet ID: " + petId;
+    @Autowired
+    private ApplicationRepository applicationRepository;
+
+    @Autowired
+    private PetRepository petRepository;
+
+    @Autowired
+    private UserRepository userRepository;
+
+    @PostMapping("/apply")
+    public Application applyForAdoption(@RequestBody Map<String, Object> payload) {
+        // 1. Verileri Al
+        Long petId = Long.valueOf(payload.get("petId").toString());
+        Long userId = Long.valueOf(payload.get("userId").toString());
+        String details = (String) payload.get("details");
+
+        // 2. Kullanıcı Var mı Kontrol Et (Yoksa Oluştur)
+        // Bu kısım çok kritik, yoksa "User not found" hatası alırsın
+        User user = userRepository.findById(userId).orElseGet(() -> {
+            User newUser = new User();
+            // User.java'da ID otomatik artmıyorsa burada set etmemiz gerekebilir
+            // Ama genelde veritabanı halleder. Biz sadece isim verelim.
+            newUser.setAd("Otomatik Kullanıcı"); 
+            newUser.setRol(Role.USER);
+            return userRepository.save(newUser);
+        });
+
+        // 3. Hayvanı Bul
+        Pet pet = petRepository.findById(petId)
+                .orElseThrow(() -> new RuntimeException("Hayvan bulunamadı!"));
+
+        // 4. Başvuruyu Kaydet
+        Application app = new Application();
+        app.setPet(pet);
+        app.setUser(user);
+        app.setRequestedInfoDetails(details);
+        app.setBasvuruDurumu(ApplicationStatus.DRAFT); // Başlangıç durumu
+
+        return applicationRepository.save(app);
     }
-    @GetMapping("/admin/applications")
-public List<Map<String, Object>> getPendingApplications() {
-    // Şimdilik Mert'e boş liste gitmesin diye örnek bir başvuru
-    Map<String, Object> app1 = new HashMap<>();
-    app1.put("id", 101);
-    app1.put("petName", "Pamuk");
-    app1.put("applicantName", "Ahmet Yılmaz");
-    app1.put("status", "PENDING");
-    
-    return java.util.Arrays.asList(app1);
-}
 }
