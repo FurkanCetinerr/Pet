@@ -1,0 +1,150 @@
+{
+  "vaccines": [
+    {
+      "code": "RABIES",
+      "species": "DOG",
+      "rules": [
+        {
+          "priority": 10,
+          "when": {
+            "minAgeDays": 90,
+            "minWeightKg": 1.5
+          },
+          "plan": {
+            "type": "ONE_SHOT",
+            "firstBoosterAfterDays": 365,
+            "repeatEveryDays": 365
+          }
+        }
+      ]
+    },
+    {
+      "code": "RABIES",
+      "species": "CAT",
+      "rules": [
+        {
+          "priority": 10,
+          "when": {
+            "minAgeDays": 90,
+            "minWeightKg": 1.0
+          },
+          "plan": {
+            "type": "ONE_SHOT",
+            "firstBoosterAfterDays": 365,
+            "repeatEveryDays": 365
+          }
+        }
+      ]
+    },
+
+    {
+      "code": "DHPP",
+      "species": "DOG",
+      "rules": [
+        {
+          "priority": 20,
+          "when": {
+            "minAgeDays": 42,
+            "maxAgeDays": 180
+          },
+          "plan": {
+            "type": "SERIES",
+            "doses": 3,
+            "intervalDays": 21,
+            "restartThresholdDays": 45,
+            "firstBoosterAfterDays": 365,
+            "repeatEveryDays": 365
+          }
+        },
+        {
+          "priority": 10,
+          "when": {
+            "minAgeDays": 180
+          },
+          "plan": {
+            "type": "ONE_SHOT",
+            "firstBoosterAfterDays": 365,
+            "repeatEveryDays": 365
+          }
+        }
+      ]
+    },
+
+    {
+      "code": "FVRCP",
+      "species": "CAT",
+      "rules": [
+        {
+          "priority": 20,
+          "when": {
+            "minAgeDays": 42,
+            "maxAgeDays": 180
+          },
+          "plan": {
+            "type": "SERIES",
+            "doses": 3,
+            "intervalDays": 21,
+            "restartThresholdDays": 45,
+            "firstBoosterAfterDays": 365,
+            "repeatEveryDays": 365
+          }
+        },
+        {
+          "priority": 10,
+          "when": {
+            "minAgeDays": 180
+          },
+          "plan": {
+            "type": "ONE_SHOT",
+            "firstBoosterAfterDays": 365,
+            "repeatEveryDays": 365
+          }
+        }
+      ]
+    },
+
+    {
+      "code": "FE_LV",
+      "species": "CAT",
+      "rules": [
+        {
+          "priority": 10,
+          "when": {
+            "minAgeDays": 56,
+            "minWeightKg": 0.8
+          },
+          "plan": {
+            "type": "SERIES",
+            "doses": 2,
+            "intervalDays": 28,
+            "restartThresholdDays": 60,
+            "firstBoosterAfterDays": 365,
+            "repeatEveryDays": 365
+          }
+        }
+      ]
+    },
+
+    {
+      "code": "LEPTO",
+      "species": "DOG",
+      "rules": [
+        {
+          "priority": 10,
+          "when": {
+            "minAgeDays": 84,
+            "minWeightKg": 2.0
+          },
+          "plan": {
+            "type": "SERIES",
+            "doses": 2,
+            "intervalDays": 28,
+            "restartThresholdDays": 60,
+            "firstBoosterAfterDays": 365,
+            "repeatEveryDays": 365
+          }
+        }
+      ]
+    }
+  ]
+}
