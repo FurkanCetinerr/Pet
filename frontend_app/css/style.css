@@ -47,6 +47,7 @@ html {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0); }
 
 article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
+  background-color: #00000014;
   display: block; }
 
 body {
@@ -8268,7 +8269,7 @@ h1, h2, h3, h4, h5,
         font-weight: 400;
         font-size: 40px; }
   .hero-wrap .slider-text h1 {
-    color: #fff;
+    color: #25c83e;
     line-height: 1.2;
     font-family: "Montserrat", Arial, sans-serif;
     font-size: 60px;
@@ -8288,7 +8289,7 @@ h1, h2, h3, h4, h5,
   .hero-wrap .slider-text p {
     font-size: 18px;
     line-height: 1.5;
-    color: rgba(255, 255, 255, 0.7); }
+    color: #30b344; }
     .hero-wrap .slider-text p strong {
       font-weight: 700; }
       .hero-wrap .slider-text p strong a {
@@ -8430,21 +8431,21 @@ h1, h2, h3, h4, h5,
         background: #00bd56;
         color: #fff; }
   .btn.btn-white {
-    background: #fff;
-    border: 1px solid #fff;
-    color: #000000; }
+    background: #30b344;
+    border: 1px solid #30b344;
+    color: #30b344; }
     .btn.btn-white:hover {
-      border: 1px solid #fff;
+      border: 1px solid #30b344;
       background: transparent;
-      color: #fff; }
+      color: #30b344; }
     .btn.btn-white.btn-outline-white {
-      border: 1px solid #fff;
+      border: 1px solid #30b344;
       background: transparent;
-      color: #fff; }
+      color: #30b344; }
       .btn.btn-white.btn-outline-white:hover {
         border: 1px solid transparent;
-        background: #fff;
-        color: #000000; }
+        background: #30b344;
+        color: #30b344; }
 
 .img-video {
   background-position: center center; }
@@ -9447,7 +9448,7 @@ textarea.form-control {
     line-height: 1.5;
     margin-bottom: 15px; }
   .block-23 ul li span {
-    color: rgba(255, 255, 255, 0.7); }
+    color: rgb(0 0 0 / 60%); }
   .block-23 ul li .icon, .block-23 ul li .text {
     display: table-cell;
     vertical-align: top; }

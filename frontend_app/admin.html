@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Pet Sitting - Free Bootstrap 4 Template by Colorlib</title>
+    <title>PetLifecycle | Akıllı Sahiplendirme ve Yaşam Döngüsü</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     
@@ -47,25 +47,38 @@
 			</div>
 		</div>
 		<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
-	    <div class="container">
-	    	<a class="navbar-brand" href="index.html"><span class="flaticon-pawprint-1 mr-2"></span>Pet sitting</a>
-	      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
-	        <span class="fa fa-bars"></span> Menu
-	      </button>
-	      <div class="collapse navbar-collapse" id="ftco-nav">
-	        <ul class="navbar-nav ml-auto">
-	        	<li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
-	        	<li class="nav-item active"><a href="about.html" class="nav-link">About</a></li>
-	        	<li class="nav-item"><a href="vet.html" class="nav-link">Veterinarian</a></li>
-	        	<li class="nav-item"><a href="services.html" class="nav-link">Services</a></li>
-	          <li class="nav-item"><a href="gallery.html" class="nav-link">Gallery</a></li>
-	          <li class="nav-item"><a href="pricing.html" class="nav-link">Pricing</a></li>
-	          <li class="nav-item"><a href="blog.html" class="nav-link">Blog</a></li>
-	          <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
-	        </ul>
-	      </div>
-	    </div>
-	  </nav>
+			<div class="container">
+				<a class="navbar-brand" href="index.html">
+					<span class="flaticon-pawprint-1 mr-2"></span>PetLifecycle
+				</a>
+				
+				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" 
+					aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="fa fa-bars"></span> Menü
+				</button>
+		
+				<div class="collapse navbar-collapse" id="ftco-nav">
+					<ul class="navbar-nav ml-auto">
+						<li class="nav-item active"><a href="index.html" class="nav-link">Ana Sayfa</a></li>
+						
+						<li class="nav-item"><a href="pets.html" class="nav-link">Dostlarımız</a></li>
+						
+						<li class="nav-item"><a href="services.html" class="nav-link">Hizmetler</a></li>
+						<li class="nav-item"><a href="vet.html" class="nav-link">Veteriner</a></li>
+						
+						<li class="nav-item"><a href="about.html" class="nav-link">Hakkımızda</a></li>
+						
+						<li class="nav-item"><a href="blog.html" class="nav-link">Blog</a></li>
+		
+						<li class="nav-item cta">
+							<a href="basvuru.html" class="nav-link">
+								<span>Başvuru Yap</span>
+							</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</nav>
     <!-- END nav -->
     <section class="hero-wrap hero-wrap-2" style="background-image: url('images/bg_2.jpg');" data-stellar-background-ratio="0.5">
       <div class="overlay"></div>
@@ -79,34 +92,24 @@
       </div>
     </section>
 
-    <section class="ftco-section bg-light">
+    <section class="ftco-section">
 		<div class="container">
-			<div class="row justify-content-center mb-5 pb-3">
-				<div class="col-md-7 heading-section ftco-animate text-center fadeInUp ftco-animated">
-					<h2 class="mb-4">Yönetim Paneli</h2>
-					<p>Bekleyen sahiplenme başvurularını buradan yönetebilirsiniz.</p>
-				</div>
-			</div>
-	
-			<div class="row">
-				<div class="col-md-12">
-					<div class="table-responsive">
-						<table class="table table-hover table-bordered bg-white shadow-sm" style="border-radius: 10px; overflow: hidden;">
-							<thead class="thead-dark">
-								<tr>
-									<th class="py-3">ID</th>
-									<th class="py-3">Kullanıcı</th>
-									<th class="py-3">Hayvan</th>
-									<th class="py-3">Mesaj</th>
-									<th class="py-3 text-center">İşlemler</th>
-								</tr>
-							</thead>
-							<tbody id="admin-table-body">
-								</tbody>
-						</table>
-						<div id="loading-msg" class="text-center p-3">Yükleniyor...</div>
-					</div>
-				</div>
+			<h2 class="mb-4 text-center">Yönetim Paneli</h2>
+			<div class="table-responsive">
+				<table class="table table-striped table-bordered">
+					<thead class="thead-dark">
+						<tr>
+							<th>ID</th>
+							<th>Kullanıcı</th>
+							<th>Hayvan</th>
+							<th>Mesaj</th>
+							<th>İşlemler</th>
+						</tr>
+					</thead>
+					<tbody id="admin-table-body">
+						</tbody>
+				</table>
+				<p id="loading-msg" class="text-center">Yükleniyor...</p>
 			</div>
 		</div>
 	</section>
@@ -114,190 +117,143 @@
 	<script>
 		const API_URL = "http://localhost:8080/api/admin/applications";
 	
-		document.addEventListener("DOMContentLoaded", function() {
-			loadApplications();
-		});
+		// Sayfa açılınca yükle
+		document.addEventListener("DOMContentLoaded", loadApps);
 	
-		// 1. LİSTELEME FONKSİYONU
-		function loadApplications() {
+		function loadApps() {
 			fetch(API_URL + "/pending")
 				.then(res => res.json())
 				.then(data => {
 					const tbody = document.getElementById("admin-table-body");
-					const loading = document.getElementById("loading-msg");
-					
-					tbody.innerHTML = ""; // Temizle
-					if (loading) loading.style.display = "none"; // Yükleniyor'u gizle
+					document.getElementById("loading-msg").style.display = "none";
+					tbody.innerHTML = "";
 	
-					if (!data || data.length === 0) {
-						tbody.innerHTML = `<tr><td colspan="5" class="text-center p-4">Bekleyen başvuru yok. Herkes mutlu! 🎉</td></tr>`;
+					if(data.length === 0) {
+						tbody.innerHTML = "<tr><td colspan='5' class='text-center'>Bekleyen başvuru yok.</td></tr>";
 						return;
 					}
 	
 					data.forEach(app => {
-						// DÜZELTME BURADA YAPILDI: Field isimleri Backend ile eşitlendi
-						// -------------------------------------------------------------
-						// User.java -> "username"
-						const userName = app.user && app.user.username ? app.user.username : "Misafir Kullanıcı";
-						
-						// Pet.java -> "isim"
-						const petName = app.pet && app.pet.isim ? app.pet.isim : "Bilinmiyor";
-						
-						// Detaylar
-						const details = app.requestedInfoDetails ? app.requestedInfoDetails : "Mesaj yok";
-						
-						// ID
-						const appId = app.id;
-						// -------------------------------------------------------------
+						// Backend -> Frontend alan eşleştirmesi
+						const user = app.user ? app.user.username : "Bilinmiyor"; // User.java'da username var
+						const pet = app.pet ? app.pet.isim : "Bilinmiyor";        // Pet.java'da isim var
+						const msg = app.requestedInfoDetails || "-";
 	
 						const row = `
 							<tr>
-								<td class="align-middle"><strong>#${appId}</strong></td>
-								<td class="align-middle">${userName}</td>
-								<td class="align-middle"><span class="badge badge-info">${petName}</span></td>
-								<td class="align-middle"><small>${details}</small></td>
-								<td class="align-middle text-center">
-									<button onclick="handleApprove(${appId})" class="btn btn-success btn-sm mr-2 shadow-sm">Onayla ✅</button>
-									<button onclick="handleReject(${appId})" class="btn btn-danger btn-sm shadow-sm">Reddet 🚫</button>
+								<td>${app.id}</td>
+								<td>${user}</td>
+								<td>${pet}</td>
+								<td>${msg}</td>
+								<td>
+									<button onclick="approve(${app.id})" class="btn btn-success btn-sm">Onayla ✅</button>
+									<button onclick="reject(${app.id})" class="btn btn-danger btn-sm">Reddet 🚫</button>
 								</td>
 							</tr>
 						`;
 						tbody.innerHTML += row;
 					});
-				})
-				.catch(err => {
-					console.error("Hata:", err);
-					const loading = document.getElementById("loading-msg");
-					if (loading) loading.innerHTML = "<span class='text-danger'>Veriler çekilemedi! Backend açık mı?</span>";
 				});
 		}
 	
-		// 2. ONAYLAMA FONKSİYONU (Idempotency Key Burada!)
-		function handleApprove(id) {
-			if(!confirm("Bu başvuruyu onaylamak istediğinize emin misiniz?")) return;
-	
-			// Backend bizden "Mükerrer işlemi önlemek" için rastgele bir anahtar istiyor.
-			const randomKey = "KEY-" + Date.now() + "-" + Math.random().toString(36).substr(2, 9);
-	
-			const payload = {
-				adminId: 1, // Şimdilik Admin ID 1 olsun
-				checklistComplete: true, // "Evraklar Tam" dedik
-				petAvailable: true,      // "Hayvan Uygun" dedik
-				idempotencyKey: randomKey // <--- İŞTE SİHİRLİ ANAHTAR
-			};
+		function approve(id) {
+			if(!confirm("Onaylıyor musun?")) return;
+			
+			// Idempotency Key Üretimi
+			const key = "KEY-" + Date.now() + Math.random();
 	
 			fetch(`${API_URL}/${id}/approve`, {
 				method: "POST",
 				headers: { "Content-Type": "application/json" },
-				body: JSON.stringify(payload)
-			})
-			.then(res => {
-				if(res.ok) {
-					alert("Başvuru Başarıyla Onaylandı! 🎉");
-					loadApplications(); // Listeyi yenile ki satır gitsin
+				body: JSON.stringify({
+					adminId: 1,
+					checklistComplete: true,
+					petAvailable: true,
+					idempotencyKey: key // <--- Backend bunu bekliyor
+				})
+			}).then(res => {
+				if(res.ok) { 
+					alert("Onaylandı!"); 
+					loadApps(); 
 				} else {
-					alert("Hata oluştu! Lütfen konsolu kontrol et.");
+					alert("Hata!");
 				}
-			})
-			.catch(err => console.error(err));
+			});
 		}
 	
-		// 3. REDDETME FONKSİYONU
-		function handleReject(id) {
-			const reason = prompt("Lütfen reddetme sebebini girin:");
-			if(!reason) return; // Vazgeçtiyse işlem yapma
+		function reject(id) {
+			const reason = prompt("Red sebebi:");
+			if(!reason) return;
 	
-			const randomKey = "KEY-" + Date.now() + "-" + Math.random().toString(36).substr(2, 9);
-	
-			const payload = {
-				adminId: 1,
-				reason: reason,
-				idempotencyKey: randomKey
-			};
+			const key = "KEY-" + Date.now() + Math.random();
 	
 			fetch(`${API_URL}/${id}/reject`, {
 				method: "POST",
 				headers: { "Content-Type": "application/json" },
-				body: JSON.stringify(payload)
-			})
-			.then(res => {
-				if(res.ok) {
-					alert("Başvuru Reddedildi.");
-					loadApplications();
+				body: JSON.stringify({
+					adminId: 1,
+					reason: reason,
+					idempotencyKey: key
+				})
+			}).then(res => {
+				if(res.ok) { 
+					alert("Reddedildi."); 
+					loadApps(); 
 				}
 			});
 		}
 	</script>
 
-    <footer class="footer">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-6 col-lg-3 mb-4 mb-md-0">
-						<h2 class="footer-heading">Petsitting</h2>
-						<p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
-						<ul class="ftco-footer-social p-0">
-              <li class="ftco-animate"><a href="#" data-toggle="tooltip" data-placement="top" title="Twitter"><span class="fa fa-twitter"></span></a></li>
-              <li class="ftco-animate"><a href="#" data-toggle="tooltip" data-placement="top" title="Facebook"><span class="fa fa-facebook"></span></a></li>
-              <li class="ftco-animate"><a href="#" data-toggle="tooltip" data-placement="top" title="Instagram"><span class="fa fa-instagram"></span></a></li>
-            </ul>
-					</div>
-					<div class="col-md-6 col-lg-3 mb-4 mb-md-0">
-						<h2 class="footer-heading">Latest News</h2>
-						<div class="block-21 mb-4 d-flex">
-              <a class="img mr-4 rounded" style="background-image: url(images/image_1.jpg);"></a>
-              <div class="text">
-                <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control about</a></h3>
-                <div class="meta">
-                  <div><a href="#"><span class="icon-calendar"></span> April 7, 2020</a></div>
-                  <div><a href="#"><span class="icon-person"></span> Admin</a></div>
-                  <div><a href="#"><span class="icon-chat"></span> 19</a></div>
-                </div>
-              </div>
-            </div>
-            <div class="block-21 mb-4 d-flex">
-              <a class="img mr-4 rounded" style="background-image: url(images/image_2.jpg);"></a>
-              <div class="text">
-                <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control about</a></h3>
-                <div class="meta">
-                  <div><a href="#"><span class="icon-calendar"></span> April 7, 2020</a></div>
-                  <div><a href="#"><span class="icon-person"></span> Admin</a></div>
-                  <div><a href="#"><span class="icon-chat"></span> 19</a></div>
-                </div>
-              </div>
-            </div>
-					</div>
-					<div class="col-md-6 col-lg-3 pl-lg-5 mb-4 mb-md-0">
-						<h2 class="footer-heading">Quick Links</h2>
-						<ul class="list-unstyled">
-              <li><a href="#" class="py-2 d-block">Home</a></li>
-              <li><a href="#" class="py-2 d-block">About</a></li>
-              <li><a href="#" class="py-2 d-block">Services</a></li>
-              <li><a href="#" class="py-2 d-block">Works</a></li>
-              <li><a href="#" class="py-2 d-block">Blog</a></li>
-              <li><a href="#" class="py-2 d-block">Contact</a></li>
-            </ul>
-					</div>
-					<div class="col-md-6 col-lg-3 mb-4 mb-md-0">
-						<h2 class="footer-heading">Have a Questions?</h2>
-						<div class="block-23 mb-3">
-              <ul>
-                <li><span class="icon fa fa-map"></span><span class="text">203 Fake St. Mountain View, San Francisco, California, USA</span></li>
-                <li><a href="#"><span class="icon fa fa-phone"></span><span class="text">+2 392 3929 210</span></a></li>
-                <li><a href="#"><span class="icon fa fa-paper-plane"></span><span class="text">info@yourdomain.com</span></a></li>
-              </ul>
-            </div>
-					</div>
-				</div>
-				<div class="row mt-5">
-          <div class="col-md-12 text-center">
-
-            <p class="copyright"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-  Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib.com</a>
-  <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
-          </div>
-        </div>
+    <footer class="ftco-footer ftco-section">
+		<div class="container">
+		  <div class="row mb-5">
+			<div class="col-md">
+			  <div class="ftco-footer-widget mb-4">
+				<h2 class="ftco-heading-2">PetLifecycle</h2>
+				<p>Barınaklardaki dostlarımızın sağlık takibi, aşı planlaması ve güvenilir sahiplendirme süreçleri için geliştirilmiş akıllı yaşam döngüsü platformu.</p>
+				<ul class="ftco-footer-social list-unstyled float-md-left float-lft mt-5">
+				  <li class="ftco-animate"><a href="#"><span class="fa fa-twitter"></span></a></li>
+				  <li class="ftco-animate"><a href="#"><span class="fa fa-facebook"></span></a></li>
+				  <li class="ftco-animate"><a href="#"><span class="fa fa-instagram"></span></a></li>
+				</ul>
+			  </div>
 			</div>
-		</footer>
+			
+			<div class="col-md">
+			   <div class="ftco-footer-widget mb-4">
+				<h2 class="ftco-heading-2">Hızlı Linkler</h2>
+				<ul class="list-unstyled">
+				  <li><a href="pets.html" class="py-2 d-block">Sahiplen</a></li>
+				  <li><a href="vet.html" class="py-2 d-block">Veteriner Hekimler</a></li>
+				  <li><a href="services.html" class="py-2 d-block">Hizmetler</a></li>
+				  <li><a href="contact.html" class="py-2 d-block">İletişim</a></li>
+				</ul>
+			  </div>
+			</div>
+			
+			<div class="col-md">
+			  <div class="ftco-footer-widget mb-4">
+				  <h2 class="ftco-heading-2">İletişim</h2>
+				  <div class="block-23 mb-3">
+					<ul>
+						<li><span class="icon fa fa-map-marker" style="color: #28a745;"></span><span class="text">Teknopark İstanbul, Türkiye</span></li>
+						<li><a href="#"><span class="icon fa fa-phone"style="color: #28a745;"></span><span class="text">+90 555 123 45 67</span></a></li>
+						<li><a href="#"><span class="icon fa fa-paper-plane"style="color: #28a745;"></span><span class="text">iletisim@petlifecycle.com</span></a></li>
+					  </ul>
+				  </div>
+			  </div>
+			</div>
+		  </div>
+		  
+		  <div class="row">
+			<div class="col-md-12 text-center">
+			  <p>
+				Copyright &copy;<script>document.write(new Date().getFullYear());</script> Tüm Hakları Saklıdır | PetLifecycle
+			  </p>
+			</div>
+		  </div>
+		</div>
+	  </footer>
 
     
   
