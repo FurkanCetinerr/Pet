@@ -8166,7 +8166,7 @@ h1, h2, h3, h4, h5,
         background: #00bd56;
         border-radius: 4px; } }
   .ftco-navbar-light .navbar-nav > .nav-item.active > a {
-    color: #00bd56; }
+    color: #000; }
     .ftco-navbar-light .navbar-nav > .nav-item.active > a:before {
       visibility: visible;
       background-color: #00bd56;
