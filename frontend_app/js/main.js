@@ -183,5 +183,58 @@
 
 	$('.appointment_time').timepicker();
 
+
+	$(document).ready(function() {
+		updateNavbar();
+	
+		// Çıkış Yap butonuna basılınca çalışacak fonksiyon
+		$(document).on('click', '#logoutBtn', function(e) {
+			e.preventDefault();
+			if(confirm("Çıkış yapmak istediğinize emin misiniz?")) {
+				localStorage.removeItem("currentUser"); // Hafızayı temizle
+				window.location.href = "index.html"; // Ana sayfaya at
+			}
+		});
+	});
+	
+	function updateNavbar() {
+		var storedUser = localStorage.getItem("currentUser");
+		var navContainer = $(".navbar-nav.ml-auto"); // Menünün olduğu kapsayıcı
+	
+		if (storedUser) {
+			var user = JSON.parse(storedUser);
+			
+			// 1. Mevcut Giriş/Kayıt butonlarını bul ve GİZLE (Silme, gizle)
+			// Link metinlerine bakarak buluyoruz
+			navContainer.find("a:contains('Giriş')").parent().hide(); 
+			navContainer.find("a:contains('Kayıt')").parent().hide();
+	
+			// 2. Kullanıcı Adı ve Çıkış Butonunu EKLE (Eğer zaten ekli değilse)
+			if ($("#userMenu").length === 0) {
+				var userHtml = `
+				   <li class="nav-item" id="userMenu">
+					   <a href="profile.html" class="nav-link" style="color: #ffb400;">
+						   <i class="fa fa-user-circle mr-1"></i> ${user.ad}
+					   </a>
+				   </li>
+				   <li class="nav-item">
+					   <a href="#" id="logoutBtn" class="nav-link">Çıkış Yap</a>
+				   </li>
+				`;
+				// Admin ise Panele Git butonu da ekle
+				if (user.rol === 'ADMIN') {
+					 userHtml += `
+						<li class="nav-item">
+							<a href="admin.html" class="nav-link  text-white ml-2 px-3 rounded">Yönetici Paneli</a>
+						</li>
+					`;
+				}
+				
+				navContainer.append(userHtml);
+			}
+		}
+	}
+
+	
 })(jQuery);
 

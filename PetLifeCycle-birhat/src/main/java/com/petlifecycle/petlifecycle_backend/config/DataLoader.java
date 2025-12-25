@@ -12,6 +12,16 @@ public class DataLoader {
     @Bean
     CommandLineRunner initDatabase(PetRepository petRepository, UserRepository userRepository) {
         return args -> {
+            //ADMİN Ekle (Sabit)
+            if (userRepository.findByEmail("admin@pet.com").isEmpty()) {
+                User admin = new User();
+                admin.setAd("Sistem Yöneticisi");
+                admin.setEmail("admin@pet.com");
+                admin.setSifre("admin123"); // Admin şifresi
+                admin.setRol(Role.ADMIN);
+                userRepository.save(admin);
+                System.out.println("✅ ADMIN Eklendi: admin@pet.com / admin123");
+            }
             // 1. Önce Kullanıcı Ekle (Eğer yoksa)
             if (userRepository.count() == 0) {
                 User user = new User();

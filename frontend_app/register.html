@@ -48,22 +48,22 @@
                         <form action="#" class="register-form">
                             <div class="form-group">
                                 <label class="label" for="fullname">Ad Soyad</label>
-                                <input type="text" class="form-control" placeholder="Adınız Soyadınız" required>
+                                <input type="text"  id="name" class="form-control" placeholder="Adınız Soyadınız" required>
                             </div>
                             
                             <div class="form-group">
                                 <label class="label" for="username">Kullanıcı Adı</label>
-                                <input type="text" class="form-control" placeholder="Kullanıcı adı" required>
+                                <input type="text" id=username class="form-control" placeholder="Kullanıcı adı" required>
                             </div>
 
                             <div class="form-group">
                                 <label class="label" for="email">Email Adresi</label>
-                                <input type="email" class="form-control" placeholder="ornek@email.com" required>
+                                <input type="email" id="email" class="form-control" placeholder="ornek@email.com" required>
                             </div>
                             
                             <div class="form-group">
                                 <label class="label" for="password">Şifre</label>
-                                <input type="password" class="form-control" placeholder="******" required>
+                                <input type="password"  id="password" class="form-control" placeholder="******" required>
                             </div>
                             
                             <div class="form-group">
@@ -102,6 +102,40 @@
     <script src="js/jquery.timepicker.min.js"></script>
     <script src="js/scrollax.min.js"></script>
     <script src="js/main.js"></script>
+
+    <script>
+        $(document).ready(function(){
+            // Form submit olduğunda sayfa yenilenmesin
+            $("form").on("submit", function(e){
+                e.preventDefault();
+    
+                // Verileri topla (HTML inputlarındaki name veya id'lere dikkat et)
+                // Senin formunda muhtemelen ad, email, password inputları var.
+                // ID'lerin "name", "email", "password" olduğunu varsayıyorum.
+                // Değilse HTML'deki id=".." kısımlarını buna göre güncellemelisin.
+                
+                var userData = {
+                    ad: $("#name").val(),     // ID'si name olan input
+                    email: $("#email").val(), // ID'si email olan input
+                    sifre: $("#password").val() // ID'si password olan input
+                };
+    
+                $.ajax({
+                    url: "http://localhost:8080/api/auth/register",
+                    method: "POST",
+                    contentType: "application/json",
+                    data: JSON.stringify(userData),
+                    success: function(response) {
+                        alert("Kayıt Başarılı! Giriş sayfasına yönlendiriliyorsunuz.");
+                        window.location.href = "login.html";
+                    },
+                    error: function(xhr) {
+                        alert("Hata: " + xhr.responseText);
+                    }
+                });
+            });
+        });
+    </script>
 
   </body>
 </html>

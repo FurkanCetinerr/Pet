@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>PetLifecycle - Profilim</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:200,300,400,500,600,700,800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/animate.css">
+    <link rel="stylesheet" href="css/owl.carousel.min.css">
+    <link rel="stylesheet" href="css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="css/magnific-popup.css">
+    <link rel="stylesheet" href="css/bootstrap-datepicker.css">
+    <link rel="stylesheet" href="css/jquery.timepicker.css">
+    <link rel="stylesheet" href="css/flaticon.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+        <div class="container">
+            <a class="navbar-brand" href="index.html"><span class="flaticon-pawprint-1 mr-2"></span>PetLifecycle</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="fa fa-bars"></span> Menu
+            </button>
+            <div class="collapse navbar-collapse" id="ftco-nav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item"><a href="index.html" class="nav-link">Ana Sayfa</a></li>
+                    <li class="nav-item"><a href="about.html" class="nav-link">Hakkımızda</a></li>
+                    <li class="nav-item"><a href="pets.html" class="nav-link">Hayvanlar</a></li>
+                    <li class="nav-item"><a href="contact.html" class="nav-link">İletişim</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero-wrap hero-wrap-2" style="background-image: url('images/bg_2.jpg');" data-stellar-background-ratio="0.5">
+        <div class="overlay"></div>
+        <div class="container">
+            <div class="row no-gutters slider-text align-items-end">
+                <div class="col-md-9 ftco-animate pb-5">
+                    <p class="breadcrumbs mb-2"><span class="mr-2"><a href="index.html">Ana Sayfa <i class="ion-ios-arrow-forward"></i></a></span> <span>Profilim</span></p>
+                    <h1 class="mb-0 bread">Hesabım ve Başvurularım</h1>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="ftco-section">
+        <div class="container">
+            <div class="row">
+                
+                <div class="col-md-4 mb-5">
+                    <div class="p-4 bg-light text-center rounded">
+                        <div class="icon d-flex align-items-center justify-content-center mb-4 mx-auto" style="width: 80px; height: 80px; background: #fff; border-radius: 50%;">
+                            <span class="flaticon-pawprint-1" style="font-size: 40px; color: #ffb400;"></span>
+                        </div>
+                        <h3 class="mb-3" id="userNameDisplay">Yükleniyor...</h3>
+                        <p class="text-muted" id="userEmailDisplay">...</p>
+                        <p class="mb-0">
+                            <a href="#" id="logoutBtnProfile" class="btn btn-outline-danger py-2 px-4">Çıkış Yap</a>
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col-md-8">
+                    <h3 class="mb-4">Sahiplenme Başvurularım</h3>
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead class="thead-primary">
+                                <tr>
+                                    <th>Hayvan Adı</th>
+                                    <th>Başvuru Tarihi</th>
+                                    <th>Durum</th>
+                                </tr>
+                            </thead>
+                            <tbody id="applicationTableBody">
+                                </tbody>
+                        </table>
+                    </div>
+                    <div id="noDataMessage" class="alert alert-info" style="display: none;">
+                        Henüz bir sahiplenme başvurunuz bulunmuyor. <a href="pets.html">Hemen bir dost seçin!</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <p>Copyright &copy;<script>document.write(new Date().getFullYear());</script> PetLifecycle</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
+
+    <script src="js/jquery.min.js"></script>
+    <script src="js/jquery-migrate-3.0.1.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.easing.1.3.js"></script>
+    <script src="js/jquery.waypoints.min.js"></script>
+    <script src="js/jquery.stellar.min.js"></script>
+    <script src="js/owl.carousel.min.js"></script>
+    <script src="js/jquery.magnific-popup.min.js"></script>
+    <script src="js/bootstrap-datepicker.js"></script>
+    <script src="js/jquery.timepicker.min.js"></script>
+    <script src="js/scrollax.min.js"></script>
+    <script src="js/main.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            // 1. Kullanıcı Giriş Kontrolü
+            var storedUser = localStorage.getItem("currentUser");
+            if (!storedUser) {
+                alert("Lütfen önce giriş yapınız!");
+                window.location.href = "login.html";
+                return;
+            }
+
+            var user = JSON.parse(storedUser);
+            $("#userNameDisplay").text(user.ad);
+            $("#userEmailDisplay").text(user.email);
+
+            // 2. Başvuruları Çek
+            $.ajax({
+                url: "http://localhost:8080/api/applications/user/" + user.id,
+                method: "GET",
+                success: function(applications) {
+                    if (applications.length === 0) {
+                        $("#noDataMessage").show();
+                        $(".table").hide();
+                    } else {
+                        var tbody = $("#applicationTableBody");
+                        tbody.empty();
+
+                        applications.forEach(function(app) {
+                            // Duruma göre renk belirle
+                            var badgeClass = "badge-secondary";
+                            var durumText = app.status;
+
+                            if (durumText === "APPROVED") { badgeClass = "badge-success"; durumText = "ONAYLANDI"; }
+                            else if (durumText === "REJECTED") { badgeClass = "badge-danger"; durumText = "REDDEDİLDİ"; }
+                            else if (durumText === "PENDING") { badgeClass = "badge-warning text-white"; durumText = "DEĞERLENDİRİLİYOR"; }
+                            else if (durumText === "IN_REVIEW") { badgeClass = "badge-info"; durumText = "İNCELEMEDE"; }
+
+                            // Eğer tarih null ise "Tarih Yok" yaz
+                            var tarih = app.applicationDate ? new Date(app.applicationDate).toLocaleDateString() : "-";
+
+                            var row = `
+                                <tr>
+                                    <td class="font-weight-bold">${app.pet ? app.pet.isim : 'Bilinmeyen Pet'}</td>
+                                    <td>${tarih}</td>
+                                    <td><span class="badge ${badgeClass} p-2">${durumText}</span></td>
+                                </tr>
+                            `;
+                            tbody.append(row);
+                        });
+                    }
+                },
+                error: function(err) {
+                    console.error("Başvurular çekilemedi:", err);
+                    $("#applicationTableBody").html("<tr><td colspan='3' class='text-danger'>Veriler yüklenirken hata oluştu.</td></tr>");
+                }
+            });
+
+            // Çıkış Butonu (Profil sayfasındaki özel buton)
+            $("#logoutBtnProfile").click(function(e) {
+                e.preventDefault();
+                if(confirm("Çıkış yapmak istediğinize emin misiniz?")) {
+                    localStorage.removeItem("currentUser");
+                    window.location.href = "index.html";
+                }
+            });
+        });
+    </script>
+</body>
+</html>

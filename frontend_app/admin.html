@@ -1,282 +1,400 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>PetLifecycle | Akıllı Sahiplendirme ve Yaşam Döngüsü</title>
+<html lang="tr">
+<head>
+    <title>PetLifecycle - Gelişmiş Yönetici Paneli</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    
     <link href="https://fonts.googleapis.com/css?family=Montserrat:200,300,400,500,600,700,800&display=swap" rel="stylesheet">
-
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
- 
     <link rel="stylesheet" href="css/animate.css">
-    
     <link rel="stylesheet" href="css/owl.carousel.min.css">
-    <link rel="stylesheet" href="css/owl.theme.default.min.css">
-    <link rel="stylesheet" href="css/magnific-popup.css">
-
-
-    <link rel="stylesheet" href="css/bootstrap-datepicker.css">
-    <link rel="stylesheet" href="css/jquery.timepicker.css">
-
-    <link rel="stylesheet" href="css/flaticon.css">
     <link rel="stylesheet" href="css/style.css">
-  </head>
-  <body>
+    
+    <style>
+        .nav-pills .nav-link.active { background-color: #ffb400; color: #fff; }
+        .nav-pills .nav-link { color: #333; font-weight: 600; }
+        .table img { width: 50px; height: 50px; object-fit: cover; border-radius: 50%; }
+        /* Tablo hücrelerini dikey ortala */
+        .table td, .table th { vertical-align: middle; }
+    </style>
+</head>
+<body>
 
-    <div class="wrap">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-6 d-flex align-items-center">
-						<p class="mb-0 phone pl-md-2">
-							<a href="#" class="mr-2"><span class="fa fa-phone mr-1"></span> +00 1234 567</a> 
-							<a href="#"><span class="fa fa-paper-plane mr-1"></span> youremail@email.com</a>
-						</p>
-					</div>
-					<div class="col-md-6 d-flex justify-content-md-end">
-						<div class="social-media">
-			    		<p class="mb-0 d-flex">
-			    			<a href="#" class="d-flex align-items-center justify-content-center"><span class="fa fa-facebook"><i class="sr-only">Facebook</i></span></a>
-			    			<a href="#" class="d-flex align-items-center justify-content-center"><span class="fa fa-twitter"><i class="sr-only">Twitter</i></span></a>
-			    			<a href="#" class="d-flex align-items-center justify-content-center"><span class="fa fa-instagram"><i class="sr-only">Instagram</i></span></a>
-			    			<a href="#" class="d-flex align-items-center justify-content-center"><span class="fa fa-dribbble"><i class="sr-only">Dribbble</i></span></a>
-			    		</p>
-		        </div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
-			<div class="container">
-				<a class="navbar-brand" href="index.html">
-					<span class="flaticon-pawprint-1 mr-2"></span>PetLifecycle
-				</a>
-				
-				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" 
-					aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
-					<span class="fa fa-bars"></span> Menü
-				</button>
-		
-				<div class="collapse navbar-collapse" id="ftco-nav">
-					<ul class="navbar-nav ml-auto">
-						<li class="nav-item active"><a href="index.html" class="nav-link">Ana Sayfa</a></li>
-						
-						<li class="nav-item"><a href="pets.html" class="nav-link">Dostlarımız</a></li>
-						
-						<li class="nav-item"><a href="services.html" class="nav-link">Hizmetler</a></li>
-						
-						<li class="nav-item"><a href="about.html" class="nav-link">Hakkımızda</a></li>
-		
-						<li class="nav-item cta">
-							<a href="basvuru.html" class="nav-link">
-								<span>Başvuru Yap</span>
-							</a>
-						</li>
-						<li class="nav-item"><a href="login.html" class="nav-link">Giriş Yap</a></li>
-					</ul>
-				</div>
-			</div>
-		</nav>
-    <!-- END nav -->
-    <section class="hero-wrap hero-wrap-2" style="background-image: url('images/bg_2.jpg');" data-stellar-background-ratio="0.5">
-      <div class="overlay"></div>
-      <div class="container">
-        <div class="row no-gutters slider-text align-items-end">
-          <div class="col-md-9 ftco-animate pb-5">
-          	<p class="breadcrumbs mb-2"><span class="mr-2"><a href="index.html">Ana Sayfa <i class="ion-ios-arrow-forward"></i></a></span> <span>Yönetim Paneli <i class="ion-ios-arrow-forward"></i></span></p>
-            <h1 class="mb-0 bread">Yönetim Paneli</h1>
-          </div>
+    <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">PetLifecycle Admin</a>
+            <div class="collapse navbar-collapse">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item"><a href="index.html" class="nav-link">Siteye Dön</a></li>
+                    <li class="nav-item"><a href="#" id="logoutBtn" class="nav-link btn btn-danger mt-2 text-white">Çıkış</a></li>
+                </ul>
+            </div>
         </div>
-      </div>
+    </nav>
+
+    <section class="ftco-section bg-light">
+        <div class="container">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h2 class="mb-0">Yönetim Merkezi</h2>
+                <div id="adminNameBadge" class="badge badge-warning p-2 text-white" style="font-size: 1rem;">...</div>
+            </div>
+
+            <ul class="nav nav-pills mb-4 justify-content-center bg-white p-2 rounded shadow-sm" id="pills-tab" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active" id="pills-apps-tab" data-toggle="pill" href="#pills-apps" role="tab">📜 Bekleyen Başvurular</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="pills-pets-tab" data-toggle="pill" href="#pills-pets" role="tab">🐶 Hayvan Yönetimi</a>
+                </li>
+            </ul>
+
+            <div class="tab-content" id="pills-tabContent">
+                
+                <div class="tab-pane fade show active" id="pills-apps" role="tabpanel">
+                    <div class="bg-white p-4 rounded shadow-sm">
+                        <h4 class="mb-3">Onay Bekleyen İşlemler</h4>
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <thead class="thead-dark">
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Kullanıcı</th>
+                                        <th>Hayvan</th>
+                                        <th>Mesaj</th>
+                                        <th>İşlemler</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="applicationsTable">
+                                    </tbody>
+                            </table>
+                        </div>
+                        <div id="noAppsMsg" class="text-center text-muted mt-3" style="display:none;">Hiçbir başvuru yok.</div>
+                    </div>
+                </div>
+
+                <div class="tab-pane fade" id="pills-pets" role="tabpanel">
+                    <div class="bg-white p-4 rounded shadow-sm">
+                        <div class="d-flex justify-content-between mb-3 align-items-center">
+                            <h4 class="mb-0">Kayıtlı Dostlarımız</h4>
+                            <button class="btn btn-success" data-toggle="modal" data-target="#addPetModal">
+                                <i class="fa fa-plus"></i> Yeni Ekle
+                            </button>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table align-middle table-striped">
+                                <thead class="thead-light">
+                                    <tr>
+                                        <th>Resim</th>
+                                        <th>İsim</th>
+                                        <th>Tür</th>
+                                        <th>Yaş / Kilo</th>
+                                        <th>Durum (Değiştir)</th>
+                                        <th>Sağlık</th>
+                                        <th>Sil</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="petsTable">
+                                    </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
     </section>
 
-    <section class="ftco-section">
-		<div class="container">
-			<h2 class="mb-4 text-center">Yönetim Paneli</h2>
-			<div class="table-responsive">
-				<table class="table table-striped table-bordered">
-					<thead class="thead-dark">
-						<tr>
-							<th>ID</th>
-							<th>Kullanıcı</th>
-							<th>Hayvan</th>
-							<th>Mesaj</th>
-							<th>İşlemler</th>
-						</tr>
-					</thead>
-					<tbody id="admin-table-body">
-						</tbody>
-				</table>
-				<p id="loading-msg" class="text-center">Yükleniyor...</p>
-			</div>
-		</div>
-	</section>
-	
-	<script>
-		const API_URL = "http://localhost:8080/api/admin/applications";
-	
-		// Sayfa açılınca yükle
-		document.addEventListener("DOMContentLoaded", loadApps);
-	
-		function loadApps() {
-			fetch(API_URL + "/pending")
-				.then(res => res.json())
-				.then(data => {
-					const tbody = document.getElementById("admin-table-body");
-					document.getElementById("loading-msg").style.display = "none";
-					tbody.innerHTML = "";
-	
-					if(data.length === 0) {
-						tbody.innerHTML = "<tr><td colspan='5' class='text-center'>Bekleyen başvuru yok.</td></tr>";
-						return;
-					}
-	
-					data.forEach(app => {
-						// Backend -> Frontend alan eşleştirmesi
-						const user = app.user ? app.user.username : "Bilinmiyor"; // User.java'da username var
-						const pet = app.pet ? app.pet.isim : "Bilinmiyor";        // Pet.java'da isim var
-						const msg = app.requestedInfoDetails || "-";
-	
-						const row = `
-							<tr>
-								<td>${app.id}</td>
-								<td>${user}</td>
-								<td>${pet}</td>
-								<td>${msg}</td>
-								<td>
-									<button onclick="approve(${app.id})" class="btn btn-success btn-sm">Onayla ✅</button>
-									<button onclick="reject(${app.id})" class="btn btn-danger btn-sm">Reddet 🚫</button>
-								</td>
-							</tr>
-						`;
-						tbody.innerHTML += row;
-					});
-				});
-		}
-	
-		function approve(id) {
-			if(!confirm("Onaylıyor musun?")) return;
-			
-			// Idempotency Key Üretimi
-			const key = "KEY-" + Date.now() + Math.random();
-	
-			fetch(`${API_URL}/${id}/approve`, {
-				method: "POST",
-				headers: { "Content-Type": "application/json" },
-				body: JSON.stringify({
-					adminId: 1,
-					checklistComplete: true,
-					petAvailable: true,
-					idempotencyKey: key // <--- Backend bunu bekliyor
-				})
-			}).then(res => {
-				if(res.ok) { 
-					alert("Onaylandı!"); 
-					loadApps(); 
-				} else {
-					alert("Hata!");
-				}
-			});
-		}
-	
-		function reject(id) {
-			const reason = prompt("Red sebebi:");
-			if(!reason) return;
-	
-			const key = "KEY-" + Date.now() + Math.random();
-	
-			fetch(`${API_URL}/${id}/reject`, {
-				method: "POST",
-				headers: { "Content-Type": "application/json" },
-				body: JSON.stringify({
-					adminId: 1,
-					reason: reason,
-					idempotencyKey: key
-				})
-			}).then(res => {
-				if(res.ok) { 
-					alert("Reddedildi."); 
-					loadApps(); 
-				}
-			});
-		}
-	</script>
+    <div class="modal fade" id="addPetModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header bg-primary text-white">
+                    <h5 class="modal-title text-white">Yeni Dost Ekle</h5>
+                    <button type="button" class="close text-white" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <form id="addPetForm">
+                        <div class="form-group">
+                            <label>İsim</label>
+                            <input type="text" id="newPetName" class="form-control" placeholder="Örn: Pamuk" required>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Tür</label>
+                                    <select id="newPetType" class="form-control">
+                                        <option value="KEDI">Kedi</option>
+                                        <option value="KOPEK">Köpek</option>
+                                        <option value="EXOTIC">Egzotik</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Durum</label>
+                                    <select id="newPetStatus" class="form-control">
+                                        <option value="AVAILABLE" selected>Sahiplendirilebilir</option>
+                                        <option value="ADOPTED">Sahiplenildi</option>
+                                        <option value="PENDING">Rezerve/Beklemede</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Yaş</label>
+                                    <input type="number" id="newPetAge" class="form-control" required>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Kilo (kg)</label>
+                                    <input type="number" step="0.1" id="newPetWeight" class="form-control" placeholder="Örn: 4.5" required>
+                                </div>
+                            </div>
+                        </div>
+                         <div class="form-group">
+                            <label>Resim URL</label>
+                            <input type="text" id="newPetImg" class="form-control" value="images/gallery-1.jpg">
+                            <small class="text-muted">Varsayılan: images/gallery-1.jpg</small>
+                        </div>
+                        <button type="submit" class="btn btn-success w-100 py-3">Kaydet ve Yayınla</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 
-    <footer class="ftco-footer ftco-section">
-		<div class="container">
-		  <div class="row mb-5">
-			<div class="col-md">
-			  <div class="ftco-footer-widget mb-4">
-				<h2 class="ftco-heading-2">PetLifecycle</h2>
-				<p>Barınaklardaki dostlarımızın sağlık takibi, aşı planlaması ve güvenilir sahiplendirme süreçleri için geliştirilmiş akıllı yaşam döngüsü platformu.</p>
-				<ul class="ftco-footer-social list-unstyled float-md-left float-lft mt-5">
-				  <li class="ftco-animate"><a href="#"><span class="fa fa-twitter"></span></a></li>
-				  <li class="ftco-animate"><a href="#"><span class="fa fa-facebook"></span></a></li>
-				  <li class="ftco-animate"><a href="#"><span class="fa fa-instagram"></span></a></li>
-				</ul>
-			  </div>
-			</div>
-			
-			<div class="col-md">
-			   <div class="ftco-footer-widget mb-4">
-				<h2 class="ftco-heading-2">Hızlı Linkler</h2>
-				<ul class="list-unstyled">
-				  <li><a href="pets.html" class="py-2 d-block">Sahiplen</a></li>
-				  <li><a href="vet.html" class="py-2 d-block">Veteriner Hekimler</a></li>
-				  <li><a href="services.html" class="py-2 d-block">Hizmetler</a></li>
-				  <li><a href="contact.html" class="py-2 d-block">İletişim</a></li>
-				</ul>
-			  </div>
-			</div>
-			
-			<div class="col-md">
-			  <div class="ftco-footer-widget mb-4">
-				  <h2 class="ftco-heading-2">İletişim</h2>
-				  <div class="block-23 mb-3">
-					<ul>
-						<li><span class="icon fa fa-map-marker" style="color: #28a745;"></span><span class="text">Teknopark İstanbul, Türkiye</span></li>
-						<li><a href="#"><span class="icon fa fa-phone"style="color: #28a745;"></span><span class="text">+90 555 123 45 67</span></a></li>
-						<li><a href="#"><span class="icon fa fa-paper-plane"style="color: #28a745;"></span><span class="text">iletisim@petlifecycle.com</span></a></li>
-					  </ul>
-				  </div>
-			  </div>
-			</div>
-		  </div>
-		  
-		  <div class="row">
-			<div class="col-md-12 text-center">
-			  <p>
-				Copyright &copy;<script>document.write(new Date().getFullYear());</script> Tüm Hakları Saklıdır | PetLifecycle
-			  </p>
-			</div>
-		  </div>
-		</div>
-	  </footer>
+    <div class="modal fade" id="scheduleModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="scheduleTitle">Sağlık Takvimi</h5>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <table class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th>Aşı/İşlem Adı</th>
+                                <th>Tarih</th>
+                                <th>Durum</th>
+                            </tr>
+                        </thead>
+                        <tbody id="scheduleTableBody"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
 
-    
-  
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/main.js"></script>
 
-  <!-- loader -->
-  <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
+    <script>
+        $(document).ready(function() {
+            // GÜVENLİK
+            var storedUser = localStorage.getItem("currentUser");
+            if (!storedUser) { window.location.href = "login.html"; return; }
+            var user = JSON.parse(storedUser);
+            if (user.rol !== 'ADMIN') { window.location.href = "index.html"; return; }
+            $("#adminNameBadge").text("Yönetici: " + user.ad);
 
+            loadPendingApplications();
+            loadPets();
 
-  <script src="js/jquery.min.js"></script>
-  <script src="js/jquery-migrate-3.0.1.min.js"></script>
-  <script src="js/popper.min.js"></script>
-  <script src="js/bootstrap.min.js"></script>
-  <script src="js/jquery.easing.1.3.js"></script>
-  <script src="js/jquery.waypoints.min.js"></script>
-  <script src="js/jquery.stellar.min.js"></script>
-  <script src="js/jquery.animateNumber.min.js"></script>
-  <script src="js/bootstrap-datepicker.js"></script>
-  <script src="js/jquery.timepicker.min.js"></script>
-  <script src="js/owl.carousel.min.js"></script>
-  <script src="js/jquery.magnific-popup.min.js"></script>
-  <script src="js/scrollax.min.js"></script>
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
-  <script src="js/google-map.js"></script>
-  <script src="js/main.js"></script>
+            // 1. BAŞVURULARI GETİR
+            function loadPendingApplications() {
+                $.ajax({
+                    url: "http://localhost:8080/api/admin/applications/pending",
+                    method: "GET",
+                    success: function(apps) {
+                        var tbody = $("#applicationsTable");
+                        tbody.empty();
+                        if(apps.length === 0) { $("#noAppsMsg").show(); return; }
+                        $("#noAppsMsg").hide();
 
-    
-  </body>
+                        apps.forEach(app => {
+                            var row = `
+                                <tr>
+                                    <td>#${app.id}</td>
+                                    <td>${app.user ? app.user.ad : '-'}</td>
+                                    <td><span class="badge badge-info">${app.pet.tur}</span> ${app.pet.isim}</td>
+                                    <td><small>${app.requestedInfoDetails || '-'}</small></td>
+                                    <td>
+                                        <button onclick="approveApp(${app.id})" class="btn btn-sm btn-success" title="Onayla"><i class="fa fa-check"></i></button>
+                                        <button onclick="rejectApp(${app.id})" class="btn btn-sm btn-danger" title="Reddet"><i class="fa fa-times"></i></button>
+                                    </td>
+                                </tr>
+                            `;
+                            tbody.append(row);
+                        });
+                    }
+                });
+            }
+
+            // 2. HAYVANLARI GETİR (GÜNCELLENDİ: Dropdown ve Sil Butonu)
+            function loadPets() {
+                $.ajax({
+                    url: "http://localhost:8080/api/pets",
+                    method: "GET",
+                    success: function(pets) {
+                        var tbody = $("#petsTable");
+                        tbody.empty();
+                        pets.forEach(pet => {
+                            // Sağlık Butonu
+                            let scheduleBtn = `<span class="text-muted">-</span>`;
+                            if (pet.durum === 'ADOPTED') {
+                                let btnText = pet.tur === 'EXOTIC' ? 'Diyet Planı' : 'Aşı Takvimi';
+                                let btnClass = pet.tur === 'EXOTIC' ? 'btn-warning' : 'btn-info';
+                                scheduleBtn = `<button onclick="showSchedule(${pet.id}, '${pet.isim}')" class="btn btn-sm ${btnClass}">${btnText}</button>`;
+                            }
+
+                            // Kilo Kontrolü (Null ise - yaz)
+                            let weightText = pet.kilo ? pet.kilo + " kg" : "-";
+
+                            var row = `
+                                <tr>
+                                    <td><img src="${pet.resimUrl}" alt="pet"></td>
+                                    <td class="font-weight-bold">${pet.isim}</td>
+                                    <td>${pet.tur}</td>
+                                    <td>${pet.yas} yaş / ${weightText}</td>
+                                    <td>
+                                        <select class="form-control form-control-sm" onchange="changeStatus(${pet.id}, this.value)" 
+                                            style="width: 130px; border-color: ${getColor(pet.durum)}; color: ${getColor(pet.durum)}; font-weight:bold;">
+                                            <option value="AVAILABLE" ${pet.durum === 'AVAILABLE' ? 'selected' : ''}>Müsait</option>
+                                            <option value="ADOPTED" ${pet.durum === 'ADOPTED' ? 'selected' : ''}>Sahiplenildi</option>
+                                            <option value="PENDING" ${pet.durum === 'PENDING' ? 'selected' : ''}>Rezerve</option>
+                                        </select>
+                                    </td>
+                                    <td>${scheduleBtn}</td>
+                                    <td>
+                                        <button onclick="deletePet(${pet.id})" class="btn btn-sm btn-outline-danger" title="Sil">
+                                            <i class="fa fa-trash"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                            `;
+                            tbody.append(row);
+                        });
+                    }
+                });
+            }
+
+            // 3. HAYVAN EKLE (Kilo dahil)
+            $("#addPetForm").on("submit", function(e){
+                e.preventDefault();
+                var petData = {
+                    isim: $("#newPetName").val(),
+                    tur: $("#newPetType").val(),
+                    yas: $("#newPetAge").val(),
+                    kilo: $("#newPetWeight").val(), // YENİ
+                    durum: $("#newPetStatus").val(), // YENİ: Seçilen durumu al
+                    resimUrl: $("#newPetImg").val()
+                };
+
+                $.ajax({
+                    url: "http://localhost:8080/api/pets",
+                    method: "POST",
+                    contentType: "application/json",
+                    data: JSON.stringify(petData),
+                    success: function() {
+                        $("#addPetModal").modal("hide");
+                        loadPets(); // Listeyi yenile
+                    }
+                });
+            });
+        });
+
+        // --- GLOBAL FONKSİYONLAR ---
+
+        // Statü Rengi Yardımcısı
+        function getColor(status) {
+            if(status === 'AVAILABLE') return '#28a745'; // Yeşil
+            if(status === 'ADOPTED') return '#6c757d';   // Gri
+            if(status === 'PENDING') return '#ffc107';   // Sarı
+            return '#000';
+        }
+
+        // STATÜ DEĞİŞTİRME (ANLIK)
+        function changeStatus(id, newStatus) {
+            $.ajax({
+                url: `http://localhost:8080/api/pets/${id}/status`,
+                method: "PUT",
+                contentType: "application/json",
+                data: JSON.stringify({ status: newStatus }),
+                success: function() {
+                    // Başarılı olursa hiçbir şey yapmaya gerek yok, zaten değişti.
+                    // İstersen bildirim gösterebilirsin: console.log("Statü güncellendi");
+                    location.reload(); // Renklerin tam oturması için sayfayı yenilemek en temizi
+                },
+                error: function() {
+                    alert("Statü güncellenemedi!");
+                }
+            });
+        }
+
+        // HAYVAN SİLME
+        function deletePet(id) {
+            if(!confirm("Bu kaydı kalıcı olarak silmek istediğinize emin misiniz?")) return;
+
+            $.ajax({
+                url: `http://localhost:8080/api/pets/${id}`,
+                method: "DELETE",
+                success: function() {
+                    location.reload();
+                },
+                error: function() {
+                    alert("Silme işlemi başarısız!");
+                }
+            });
+        }
+
+        // ... (generateUUID, approveApp, rejectApp, showSchedule fonksiyonları önceki ile aynı kalacak) ...
+        function generateUUID() { return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) { var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8); return v.toString(16); }); }
+        
+        function approveApp(id) {
+            if(!confirm("Onaylıyor musunuz?")) return;
+            $.ajax({
+                url: `http://localhost:8080/api/admin/applications/${id}/approve`,
+                method: "POST",
+                headers: { "Idempotency-Key": generateUUID() },
+                success: function() { alert("Onaylandı!"); location.reload(); },
+                error: function(xhr) { alert("Hata: " + xhr.responseText); }
+            });
+        }
+
+        function rejectApp(id) {
+            var reason = prompt("Sebep:");
+            if(!reason) return;
+            $.ajax({
+                url: `http://localhost:8080/api/admin/applications/${id}/reject`,
+                method: "POST",
+                headers: { "Idempotency-Key": generateUUID() },
+                contentType: "application/json",
+                data: JSON.stringify({ reason: reason }),
+                success: function() { alert("Reddedildi."); location.reload(); }
+            });
+        }
+
+        function showSchedule(petId, petName) {
+            $("#scheduleTitle").text(petName + " İçin Sağlık Takvimi");
+            $.ajax({
+                url: `http://localhost:8080/api/pets/${petId}/schedule`,
+                method: "GET",
+                success: function(schedules) {
+                    var tbody = $("#scheduleTableBody");
+                    tbody.empty();
+                    if(schedules.length === 0) tbody.html("<tr><td colspan='3'>Veri yok.</td></tr>");
+                    schedules.forEach(item => {
+                        var tarih = item.scheduledDate ? new Date(item.scheduledDate).toLocaleDateString() : '-';
+                        tbody.append(`<tr><td>${item.vaccineName}</td><td>${tarih}</td><td>${item.status}</td></tr>`);
+                    });
+                    $("#scheduleModal").modal("show");
+                }
+            });
+        }
+    </script>
+</body>
 </html>

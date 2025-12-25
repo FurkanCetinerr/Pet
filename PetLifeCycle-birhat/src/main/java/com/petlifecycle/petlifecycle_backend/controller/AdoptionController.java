@@ -3,13 +3,15 @@ package com.petlifecycle.petlifecycle_backend.controller;
 import com.petlifecycle.petlifecycle_backend.model.*;
 import com.petlifecycle.petlifecycle_backend.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity; // <-- Eklendi
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List; // <-- LİST HATASI İÇİN BU ŞART
 import java.util.Map;
 
 @RestController
-@RequestMapping("/api/adoption") // <-- Frontend buraya istek atıyor, burası DOĞRU
-@CrossOrigin(origins = "*")      // <-- Kapıyı açtık
+@RequestMapping("/api/adoption") 
+@CrossOrigin(origins = "*") 
 public class AdoptionController {
 
     @Autowired
@@ -21,6 +23,7 @@ public class AdoptionController {
     @Autowired
     private UserRepository userRepository;
 
+    // 1. BAŞVURU YAPMA METODU
     @PostMapping("/apply")
     public Application applyForAdoption(@RequestBody Map<String, Object> payload) {
         // 1. Verileri Al
@@ -28,12 +31,9 @@ public class AdoptionController {
         Long userId = Long.valueOf(payload.get("userId").toString());
         String details = (String) payload.get("details");
 
-        // 2. Kullanıcı Var mı Kontrol Et (Yoksa Oluştur)
-        // Bu kısım çok kritik, yoksa "User not found" hatası alırsın
+        // 2. Kullanıcı Kontrolü
         User user = userRepository.findById(userId).orElseGet(() -> {
             User newUser = new User();
-            // User.java'da ID otomatik artmıyorsa burada set etmemiz gerekebilir
-            // Ama genelde veritabanı halleder. Biz sadece isim verelim.
             newUser.setAd("Otomatik Kullanıcı"); 
             newUser.setRol(Role.USER);
             return userRepository.save(newUser);
@@ -48,8 +48,15 @@ public class AdoptionController {
         app.setPet(pet);
         app.setUser(user);
         app.setRequestedInfoDetails(details);
-        app.setBasvuruDurumu(ApplicationStatus.DRAFT); // Başlangıç durumu
+        app.setBasvuruDurumu(ApplicationStatus.DRAFT); 
 
         return applicationRepository.save(app);
+    } 
+
+    // 2. KULLANICI BAŞVURULARINI GETİRME METODU (ARTIK DIŞARIDA)
+    @GetMapping("/user/{userId}")
+    public ResponseEntity<List<Application>> getUserApplications(@PathVariable Long userId) {
+        List<Application> applications = applicationRepository.findByUserId(userId);
+        return ResponseEntity.ok(applications);
     }
 }

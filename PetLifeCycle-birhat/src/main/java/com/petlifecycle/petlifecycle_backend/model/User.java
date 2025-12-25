@@ -4,10 +4,7 @@
  */
 package com.petlifecycle.petlifecycle_backend.model;
 
-/**
- *
- * @author Taha
- */
+
 import jakarta.persistence.*;
 import java.util.List;
 

@@ -8,4 +8,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 public interface ApplicationRepository extends JpaRepository<Application, Long> {
 
     List<Application> findByBasvuruDurumuIn(List<ApplicationStatus> statuses);
+    List<Application> findByUserId(Long userId);
+    List<Application> findByPetId(Long petId);
 }

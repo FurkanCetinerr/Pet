@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>PetLifecycle - Hayvan Detayı</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:200,300,400,500,600,700,800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/animate.css">
+    <link rel="stylesheet" href="css/owl.carousel.min.css">
+    <link rel="stylesheet" href="css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="css/magnific-popup.css">
+    <link rel="stylesheet" href="css/bootstrap-datepicker.css">
+    <link rel="stylesheet" href="css/jquery.timepicker.css">
+    <link rel="stylesheet" href="css/flaticon.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+        <div class="container">
+            <a class="navbar-brand" href="index.html"><span class="flaticon-pawprint-1 mr-2"></span>PetLifecycle</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="fa fa-bars"></span> Menu
+            </button>
+            <div class="collapse navbar-collapse" id="ftco-nav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active"><a href="index.html" class="nav-link">Ana Sayfa</a></li>
+                    
+                    <li class="nav-item"><a href="pets.html" class="nav-link">Dostlarımız</a></li>
+                    
+                    <li class="nav-item"><a href="services.html" class="nav-link">Hizmetler</a></li>
+                    
+                    <li class="nav-item"><a href="about.html" class="nav-link">Hakkımızda</a></li>
+    
+                    <li class="nav-item cta">
+                        <a href="basvuru.html" class="nav-link">
+                            <span>Başvuru Yap</span>
+                        </a>
+                    </li>
+                    <li class="nav-item"><a href="login.html" class="nav-link">Giriş Yap</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <section class="hero-wrap hero-wrap-2" style="background-image: url('images/bg_2.jpg');" data-stellar-background-ratio="0.5">
+        <div class="overlay"></div>
+        <div class="container">
+            <div class="row no-gutters slider-text align-items-end">
+                <div class="col-md-9 ftco-animate pb-5">
+                    <p class="breadcrumbs mb-2"><span class="mr-2"><a href="index.html">Ana Sayfa <i class="ion-ios-arrow-forward"></i></a></span> <span class="mr-2"><a href="pets.html">Hayvanlar <i class="ion-ios-arrow-forward"></i></a></span> <span>Detay</span></p>
+                    <h1 class="mb-0 bread">Arkadaşını Tanı</h1>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="ftco-section ftco-no-pt ftco-no-pb">
+        <div class="container">
+            <div class="row d-flex no-gutters">
+                <div class="col-md-6 d-flex">
+                    <div class="img img-video d-flex align-self-stretch align-items-center justify-content-center justify-content-md-center mb-4 mb-sm-0" 
+                         style="background-image:url('images/image_1.jpg'); min-height: 500px;" id="petDetailImage">
+                    </div>
+                </div>
+                
+                <div class="col-md-6 pl-md-5 py-md-5">
+                    <div class="heading-section pt-md-5 mb-4">
+                        <span class="subheading" id="petTypeBadge">Tür</span>
+                        <h2 class="mb-4" id="petName">Yükleniyor...</h2>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="services-2 w-100 d-flex">
+                                <div class="icon d-flex align-items-center justify-content-center"><span class="flaticon-stethoscope"></span></div>
+                                <div class="text pl-3">
+                                    <h4>Yaş</h4>
+                                    <p id="petAge">...</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="services-2 w-100 d-flex">
+                                <div class="icon d-flex align-items-center justify-content-center"><span class="flaticon-grooming"></span></div>
+                                <div class="text pl-3">
+                                    <h4>Kilo</h4>
+                                    <p id="petWeight">...</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="services-2 w-100 d-flex">
+                                <div class="icon d-flex align-items-center justify-content-center"><span class="flaticon-dog-training"></span></div>
+                                <div class="text pl-3">
+                                    <h4>Durum</h4>
+                                    <p id="petStatus" class="font-weight-bold">...</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-4">
+                        <a href="#" id="adoptBtn" class="btn btn-primary py-3 px-4">Bu Arkadaşı Sahiplen</a>
+                         <a href="pets.html" class="btn btn-secondary py-3 px-4">Geri Dön</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <p>Copyright &copy;<script>document.write(new Date().getFullYear());</script> PetLifecycle</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
+
+    <script src="js/jquery.min.js"></script>
+    <script src="js/jquery-migrate-3.0.1.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.easing.1.3.js"></script>
+    <script src="js/jquery.waypoints.min.js"></script>
+    <script src="js/jquery.stellar.min.js"></script>
+    <script src="js/owl.carousel.min.js"></script>
+    <script src="js/jquery.magnific-popup.min.js"></script>
+    <script src="js/bootstrap-datepicker.js"></script>
+    <script src="js/jquery.timepicker.min.js"></script>
+    <script src="js/scrollax.min.js"></script>
+    <script src="js/main.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            // 1. URL'den 'id' parametresini al
+            const urlParams = new URLSearchParams(window.location.search);
+            const petId = urlParams.get('id');
+
+            if (!petId) {
+                alert("Hayvan ID bulunamadı!");
+                window.location.href = "pets.html";
+                return;
+            }
+
+            // 2. Backend'e istek at
+            $.ajax({
+                url: "http://localhost:8080/api/pets/" + petId,
+                method: "GET",
+                success: function(pet) {
+                    console.log("Gelen Veri:", pet);
+
+                    // 3. HTML'i doldur
+                    $("#petName").text(pet.isim);
+                    $("#petTypeBadge").text(pet.tur); // Enum (KEDI, KOPEK)
+                    $("#petAge").text(pet.yas + " Yaşında");
+                    $("#petWeight").text(pet.kilo + " Kg");
+                    
+                    // Durum rengi ayarlama
+                    let statusText = pet.durum;
+                    $("#petStatus").text(statusText);
+                    if(statusText === 'AVAILABLE') {
+                        $("#petStatus").css("color", "green");
+                    } else {
+                        $("#petStatus").css("color", "red");
+                    }
+
+                    // Resmi güncelle
+                    if (pet.resimUrl) {
+                        $("#petDetailImage").css("background-image", "url(" + pet.resimUrl + ")");
+                    }
+
+                    $("#adoptBtn").attr("href", "basvuru.html?petId=" + pet.id);
+                },
+                error: function(err) {
+                    console.error("Hata:", err);
+                    alert("Hayvan bilgileri alınamadı.");
+                }
+            });
+        });
+    </script>
+</body>
+</html>
